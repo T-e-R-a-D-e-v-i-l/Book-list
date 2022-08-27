@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+    --offset: 20px; /*значение отступов между колонками*/
+}
+
+.alignContainer {
+    margin: auto;
+    max-width: 1280px;
+    width: 100%; 
+}
+
+.mainContainer {
+    display: flex;
+    flex-wrap: wrap;   
+    margin: 5px 0px;
+}
+
+.bookContainer {
+    display: flex;
+    flex-direction: column;     
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    border: 1px solid rgb(230, 226, 226);
+    border-radius: 20px;    
+    width: calc(100% / 4 - var(--offset));    
+    max-width: 1024px; 
+    box-shadow: 4px 4px 4px rgba(230, 232, 232, 0.982);
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+    
+.image {    
+    width: 80%; 
+}
+
+img {
+    width: 90%; 
+    border-radius: 20px; 
+    padding: 10px;  
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: -30px;
+}
+
+.textYear {
+    color: rgb(153, 147, 147);
+}
+
+.textAuthors {
+    color: rgb(33, 117, 98);
+    font-style: italic;
+    font-size: 18px;
+}
+
+.button {
+    display: flex;    
+    width: 115%; 
+    margin-bottom: -15px;  
+}
+
+button {
+    width: 50%;
+    border: 1px solid rgb(212, 207, 207);
+    background-color: white;
+    padding: 20px;
+    font-size: 18px;
+    color:  rgb(106, 102, 102);
+}
+
+button:hover {
+    color:  rgb(143, 134, 134);
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .mainContainer {
+        margin: 5px;
+    }
+
+    .bookContainer {        
+        width: calc(100% - var(--offset));       
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .mainContainer {
+        margin: 5px;
+    }
+
+    .bookContainer {        
+        width: calc(100%  / 2 - var(--offset));       
+    }
+
+    button {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .mainContainer {
+        margin: 5px;
+    }
+
+    .bookContainer {        
+        width: calc(100%  / 3 - var(--offset));       
+    }
+
+    button {
+        font-size: 15px;
+    }
+}
