@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     --offset: 20px; /*значение отступов между колонками*/
+    --greenColor: rgb(43, 114, 91);
 }
 
 .alignContainer {
@@ -13,6 +14,21 @@
     display: flex;
     flex-wrap: wrap;   
     margin: 5px 0px;
+}
+
+.titleContainer {
+    margin: auto;
+    max-width: 1280px;
+    width: 100%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 60px;
+    color: var(--greenColor);
+    font-style: italic;
 }
 
 .bookContainer {
@@ -53,7 +69,8 @@ img {
 }
 
 .textAuthors {
-    color: rgb(33, 117, 98);
+    color: var(--greenColor);
+    font-style: italic;
     font-style: italic;
     font-size: 18px;
 }
@@ -74,7 +91,50 @@ button {
 }
 
 button:hover {
-    color:  rgb(143, 134, 134);
+   
+    background-color: rgb(44, 129, 129);
+    color: white;
+}
+
+#openAddMenu {
+    display: none;
+}
+
+.addMenu {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+}
+
+.addButton {
+    width: 30%;
+    height: 50%;
+    border: 1px solid var(--greenColor);
+    border-radius: 20px;
+    background-color: var(--greenColor);
+    color: white;
+    font-size: 20px;
+}
+
+.saveButton {
+    margin: 20px 0;
+}
+
+.titleInput {
+    font-size: 23px;
+    font-weight: 600;
+    font-style: italic;
+    margin: 10px;
+    color:  rgb(24, 77, 66);
+}
+
+input {
+    border: 1px solid var(--greenColor);
+    border-radius: 10px;
+    height: 40px;
+    font-size: 25px;
+    padding: 10px;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
@@ -85,6 +145,15 @@ button:hover {
 
     .bookContainer {        
         width: calc(100% - var(--offset));       
+    }
+
+    .titleContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .addButton {
+        width: 100%;
     }
 }
 
@@ -115,3 +184,4 @@ button:hover {
         font-size: 15px;
     }
 }
+

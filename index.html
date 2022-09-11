@@ -8,10 +8,26 @@
     <title>Book list</title>
 </head>
 <body>
+    <div class="titleContainer">
+        <h1>КНИЖНАЯ ПОЛКА</h1>
+        <button onclick="addBook()" id="addBook" class="addButton">Добавить книгу</button>
+    </div>    
+    <div class="addMenu" id="openAddMenu">
+        <p class="titleInput">Название книги</p>
+        <input id="name"/>
+        <p class="titleInput">Автор книги</p>
+        <input id="author"/>
+        <p class="titleInput">Год издания книги</p>
+        <input id="year"/>
+        <p class="titleInput">Сылка на изображение</p>
+        <input id="link"/>
+        <button onclick="saveBook()" class="addButton saveButton">Сохранить</button>
+    </div>
+    
     <div class="alignContainer">
         <div class="mainContainer" id="mainContainer"></div>
     </div>
     
-    <script src="script.js"></script>    
+    <script src="/script.js"></script>    
 </body>
 </html>
