@@ -81,7 +81,7 @@ img {
     margin-bottom: -15px;  
 }
 
-button {
+button {   
     width: 50%;
     border: 1px solid rgb(212, 207, 207);
     background-color: white;
@@ -90,8 +90,19 @@ button {
     color:  rgb(106, 102, 102);
 }
 
-button:hover {
-   
+.buttonClose {
+    border: none;
+    padding: 0;
+    width: 10%;
+    background-color: rgb(244, 242, 242);
+}
+
+.buttonContainer {
+    text-align: right;
+    width: 110%;
+}
+
+button:hover {   
     background-color: rgb(44, 129, 129);
     color: white;
 }
@@ -101,15 +112,28 @@ button:hover {
 }
 
 .addMenu {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin: auto;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(23, 21, 21, 0.324);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.addMenuContent {
+    background-color: rgb(244, 242, 242);
+    padding: 20px 50px;
+    border-radius: 25px;
+    border: 1px solid var(--greenColor);
+    box-shadow: 3px 3px 10px var(--greenColor);  
+    width: 40%;     
 }
 
 .addButton {
-    width: 30%;
-    height: 50%;
+    width: 30%;    
     border: 1px solid var(--greenColor);
     border-radius: 20px;
     background-color: var(--greenColor);
@@ -117,14 +141,22 @@ button:hover {
     font-size: 20px;
 }
 
-.saveButton {
-    margin: 20px 0;
+.icon {
+    font-size: 25px;
+    color: rgba(51, 47, 47, 0.655);
+    text-align: center;
 }
 
-.titleInput {
+.saveButton {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.titleLabel {
     font-size: 23px;
     font-weight: 600;
     font-style: italic;
+    text-align: center;
     margin: 10px;
     color:  rgb(24, 77, 66);
 }
@@ -133,11 +165,33 @@ input {
     border: 1px solid var(--greenColor);
     border-radius: 10px;
     height: 40px;
-    font-size: 25px;
+    font-size: 18px;
     padding: 10px;
+    width: 90%;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input:focus {
+    outline-color: rgb(44, 129, 129); 
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
+
+    h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .addButton {
+        width: 80%;
+        padding: 15px;
+    }
 
     .mainContainer {
         margin: 5px;
@@ -152,12 +206,33 @@ input {
         flex-direction: column;
     }
 
-    .addButton {
+    button {
+        font-size: 15px; 
+    }
+
+    .addMenuContent {
+        width: 90%;
+        padding: 15px;        
+    }
+
+    .buttonContainer {
         width: 100%;
     }
+
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
+
+    h1 {
+        font-size: 45px;
+        text-align: center;
+    }   
+
+    .addButton {
+        width: 60%;
+        padding: 15px;
+    }
+
     .mainContainer {
         margin: 5px;
     }
@@ -169,6 +244,15 @@ input {
     button {
         font-size: 15px;
     }
+
+    .addMenuContent {
+        width: 70%;
+        padding: 15px;        
+    }
+
+    .buttonContainer {
+        width: 100%;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -178,10 +262,6 @@ input {
 
     .bookContainer {        
         width: calc(100%  / 3 - var(--offset));       
-    }
-
-    button {
-        font-size: 15px;
     }
 }
 

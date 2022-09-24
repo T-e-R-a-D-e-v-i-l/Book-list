@@ -5,23 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <link rel="stylesheet" href="icons/css/all.css"/>
     <title>Book list</title>
 </head>
 <body>
     <div class="titleContainer">
         <h1>КНИЖНАЯ ПОЛКА</h1>
-        <button onclick="addBook()" id="addBook" class="addButton">Добавить книгу</button>
+        <button id="addBook" class="addButton">Добавить книгу</button>
     </div>    
     <div class="addMenu" id="openAddMenu">
-        <p class="titleInput">Название книги</p>
-        <input id="name"/>
-        <p class="titleInput">Автор книги</p>
-        <input id="author"/>
-        <p class="titleInput">Год издания книги</p>
-        <input id="year"/>
-        <p class="titleInput">Сылка на изображение</p>
-        <input id="link"/>
-        <button onclick="saveBook()" class="addButton saveButton">Сохранить</button>
+        <div class="addMenuContent">
+            <div class="buttonContainer">
+                <button class="buttonClose" id="buttonClose"><i class="fas fa-times icon"></i></button>
+            </div>  
+            <div class="inputContainer">
+                <label class="titleLabel" for="name">Название книги</label>
+                <input id="name" name="name" type="text"/>
+                <label class="titleLabel" for="author">Автор книги</label>
+                <input id="author" name="author" type="text"/>
+                <label class="titleLabel" for="year">Год издания книги</label>
+                <input id="year" name="year" type="number"/>
+                <label class="titleLabel" for="link">Сылка на изображение</label>
+                <input id="link" name="link" type="text"/>
+                <button id="saveBook" class="addButton saveButton">Сохранить</button>
+            </div>
+        </div>        
     </div>
     
     <div class="alignContainer">

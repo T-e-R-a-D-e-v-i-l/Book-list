@@ -1,4 +1,4 @@
-const books = [
+let books = [
     {
       id: 1,
       title: 'Design Patterns: Elements of Reusable Object-Oriented Software',
@@ -32,8 +32,22 @@ const books = [
       'https://images-na.ssl-images-amazon.com/images/I/51WD-F3GobL._SX379_BO1,204,203,200_.jpg'
     }
 ]
+    const openAddMenu= document.getElementById('openAddMenu')
+    const closeMenuButton = document.getElementById('buttonClose')
+    const openMenuButton = document.getElementById('addBook')
 
-    const container = document.getElementById("mainContainer")
+    function closeMenu () {
+        openAddMenu.style.display = 'none'
+    }
+
+    function openMenu () {
+        openAddMenu.style.display = 'flex'
+    }
+
+    closeMenuButton.addEventListener('click', closeMenu)
+    openMenuButton.addEventListener('click', openMenu)
+
+    const container = document.getElementById('mainContainer')
     
     function renderBooks() {
         container.innerHTML = ""
@@ -58,40 +72,23 @@ const books = [
     }
 
     function clearForm() {
-        document.getElementById("name").value = ""
-        document.getElementById("author").value = ""
-        document.getElementById("year").value = ""
-        document.getElementById("link").value = ""
+        document.getElementById('name').value = ""
+        document.getElementById('author').value = ""
+        document.getElementById('year').value = ""
+        document.getElementById('link').value = ""
+    }
+
+    function saveToLocalStorage() {
+        const booksJson = JSON.stringify(books)
+        localStorage.setItem('books', booksJson)
     }
     
-
-    let isOpen = false
-        function addBook() {
-            const menu = document.getElementById("openAddMenu")
-            
-            if (isOpen) {
-                menu.style.display = "none"
-                isOpen = false
-            } else {
-                menu.style.display = "flex"
-                isOpen = true
-            }            
-        }
-
     function saveBook() {
-        const nameValue = document.getElementById("name").value
-        const authorValue = document.getElementById("author").value
-        const yearValue = document.getElementById("year").value
-        const linkValue = document.getElementById("link").value
-        const menu = document.getElementById("openAddMenu")
-
-       let isOpen = true
-       
-       if (isOpen) {
-        menu.style.display = "none"
-        isOpen = false
-       }
-        
+        const nameValue = document.getElementById('name').value
+        const authorValue = document.getElementById('author').value
+        const yearValue = document.getElementById('year').value
+        const linkValue = document.getElementById('link').value
+                
         const book = {
             title: nameValue,
             authors: authorValue,
@@ -102,6 +99,8 @@ const books = [
             books.push(book)
             renderBooks()              
             clearForm()
+            closeMenu()
+            saveToLocalStorage()        
     }
 
     function deleteBook(id) {
@@ -111,10 +110,21 @@ const books = [
 
         const bookIndex = books.indexOf(book)
         books.splice(bookIndex,1)
-        renderBooks()        
+        renderBooks()  
+        saveToLocalStorage()
     }
    
+    const saveButton = document.getElementById('saveBook')
+    saveButton.addEventListener('click',saveBook)
+
+    const booksJson = localStorage.getItem('books')
+    if (booksJson) {
+        books = JSON.parse(booksJson)
+    }
+
     renderBooks()
+   
+    
         
         
 
