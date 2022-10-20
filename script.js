@@ -1,20 +1,21 @@
+let bookId = 1
 let books = [
     {
-      id: 1,
+      id: bookId++,
       title: 'Design Patterns: Elements of Reusable Object-Oriented Software',
       authors: 'Erich Gamma, John Vlissides, Ralph Johnson, Richard Helm',
       year: '1994',
       image: 'https://images-na.ssl-images-amazon.com/images/I/81gtKoapHFL.jpg'
     },
     {
-      id: 2,
+      id: bookId++,
       title: 'JavaScript: The Good Parts',
       authors: 'Douglas Crockford',
       year: '2008',
       image: 'https://images-na.ssl-images-amazon.com/images/I/81kqrwS1nNL.jpg'
     },
     {
-      id: 3,
+      id: bookId++,
       title:
       'JavaScript Patterns: Build Better Applications with Coding and Design Patterns',
       authors: 'Stoyan Stefanov',
@@ -23,7 +24,7 @@ let books = [
       'https://images-na.ssl-images-amazon.com/images/I/51%2BSiphz7AL._SX377_BO1,204,203,200_.jpg'
     },
     {
-      id: 4,
+      id: bookId++,
       title:
       'JavaScript: The Definitive Guide: Activate Your Web Pages (Definitive Guides)',
       authors: 'David Flanagan',
@@ -32,10 +33,10 @@ let books = [
       'https://images-na.ssl-images-amazon.com/images/I/51WD-F3GobL._SX379_BO1,204,203,200_.jpg'
     }
 ]
-    const openAddMenu= document.getElementById('openAddMenu')
-    const closeMenuButton = document.getElementById('buttonClose')
-    const openMenuButton = document.getElementById('addBook')
-
+    const openAddMenu = document.getElementById('openAddMenu') //модальное окно
+    const closeMenuButton = document.getElementById('buttonClose')//кнопка закрыть
+    const openMenuButton = document.getElementById('addBook')//кнопка добавить книгу
+                   
     function closeMenu () {
         openAddMenu.style.display = 'none'
     }
@@ -46,7 +47,8 @@ let books = [
 
     closeMenuButton.addEventListener('click', closeMenu)
     openMenuButton.addEventListener('click', openMenu)
-
+    
+    
     const container = document.getElementById('mainContainer')
     
     function renderBooks() {
@@ -63,14 +65,26 @@ let books = [
                      <p class="textAuthors">${book.authors}</p>
                   </div>               
                   <div class="button">
-                     <button>Изменить</button>
-                     <button onclick="deleteBook(${book.id})">Удалить</button>
+                     <button id ="changingButton${book.id}">Изменить</button>
+                     <button id="deleteBook${book.id}">Удалить</button>
                 </div>  
                 </div>                    
             `
         })
-    }
 
+        books.forEach((book) => {
+            document.getElementById(`deleteBook${book.id}`).addEventListener('click',() =>{
+                deleteBook(book.id)
+            })
+        })
+
+        books.forEach((book) => {
+            document.getElementById(`changingButton${book.id}`).addEventListener('click',() => {
+                openUpdateMenu(book.id)
+            })
+        })
+    }
+     
     function clearForm() {
         document.getElementById('name').value = ""
         document.getElementById('author').value = ""
@@ -90,6 +104,7 @@ let books = [
         const linkValue = document.getElementById('link').value
                 
         const book = {
+            id: bookId++,
             title: nameValue,
             authors: authorValue,
             year: yearValue,
@@ -112,18 +127,64 @@ let books = [
         books.splice(bookIndex,1)
         renderBooks()  
         saveToLocalStorage()
-    }
-   
+    }   
+
     const saveButton = document.getElementById('saveBook')
     saveButton.addEventListener('click',saveBook)
 
     const booksJson = localStorage.getItem('books')
     if (booksJson) {
         books = JSON.parse(booksJson)
+    } 
+
+    const changingMenu = document.getElementById('openChangingMenu')
+    const closeChanging = document.getElementById('buttonCloseChanging')
+    const saveBookChanging = document.getElementById('saveBookChanging')
+
+    closeChanging.addEventListener('click', closeChangingMenu)
+
+    function closeChangingMenu() {
+        openChangingMenu.style.display = 'none'
+    }
+
+    function openUpdateMenu(id) {        
+        changingMenu.style.display = 'flex'
+
+        const currentBook = books.find(b => b.id === id)
+
+        document.getElementById('nameChanging').value = currentBook.title
+        document.getElementById('authorChanging').value = currentBook.authors
+        document.getElementById('yearChanging').value = currentBook.year
+        document.getElementById('linkChanging').value = currentBook.image
+
+        const makeUpdate = () => updateBook(id, makeUpdate)
+
+        saveBookChanging.addEventListener('click', makeUpdate)
+
+        function updateBook(id, makeUpdate) {           
+            const oldBook = books.find(b => b.id === id)
+
+            const newBook = {
+                id,
+                title: document.getElementById('nameChanging').value,
+                authors: document.getElementById('authorChanging').value,
+                year: document.getElementById('yearChanging').value,
+                image: document.getElementById('linkChanging').value
+            }
+
+            const bookIndex = books.indexOf(oldBook)
+            books.splice(bookIndex, 1, newBook)
+
+            saveBookChanging.removeEventListener('click', makeUpdate)
+
+            renderBooks()
+            saveToLocalStorage()
+            closeChangingMenu()
+        }
     }
 
     renderBooks()
-   
+
     
         
         

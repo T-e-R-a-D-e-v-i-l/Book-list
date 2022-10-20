@@ -111,6 +111,10 @@ button:hover {
     display: none;
 }
 
+#openChangingMenu {
+    display: none;
+}
+
 .addMenu {
     display: flex;    
     justify-content: center;
